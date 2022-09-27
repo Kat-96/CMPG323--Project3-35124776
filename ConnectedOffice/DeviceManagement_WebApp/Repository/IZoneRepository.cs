@@ -1,6 +1,9 @@
-﻿namespace DeviceManagement_WebApp.Repository
+﻿using DeviceManagement_WebApp.Models;
+
+namespace DeviceManagement_WebApp.Repository
 {
-    public class IZoneRepository
+    public interface IZonesRepository : IGenericRepository<Zone>
     {
+        Zone GetMostRecentService();
     }
 }
