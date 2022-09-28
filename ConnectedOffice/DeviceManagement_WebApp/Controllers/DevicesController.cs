@@ -19,14 +19,14 @@ namespace DeviceManagement_WebApp.Controllers
             _context = context;
         }
 
-        // GET: Devices
+        // GET: gets Devices by index
         public async Task<IActionResult> Index()
         {
             var connectedOfficeContext = _context.Device.Include(d => d.Category).Include(d => d.Zone);
             return View(await connectedOfficeContext.ToListAsync());
         }
 
-        // GET: Devices/Details/5
+        // GET: gets the device's Details
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -46,7 +46,7 @@ namespace DeviceManagement_WebApp.Controllers
             return View(device);
         }
 
-        // GET: Devices/Create
+        // GET: create a new Device entry on the database
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName");
@@ -54,9 +54,7 @@ namespace DeviceManagement_WebApp.Controllers
             return View();
         }
 
-        // POST: Devices/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: create a new Device entry on the database
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DeviceId,DeviceName,CategoryId,ZoneId,Status,IsActive,DateCreated")] Device device)
@@ -69,7 +67,7 @@ namespace DeviceManagement_WebApp.Controllers
 
         }
 
-        // GET: Devices/Edit/5
+        // GET: update an existing Device entry on the database
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -87,9 +85,8 @@ namespace DeviceManagement_WebApp.Controllers
             return View(device);
         }
 
-        // POST: Devices/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: update an existing Device entry on the database
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("DeviceId,DeviceName,CategoryId,ZoneId,Status,IsActive,DateCreated")] Device device)
@@ -118,7 +115,7 @@ namespace DeviceManagement_WebApp.Controllers
 
         }
 
-        // GET: Devices/Delete/5
+        // GET: delete an existing Device entry on the database
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -138,7 +135,8 @@ namespace DeviceManagement_WebApp.Controllers
             return View(device);
         }
 
-        // POST: Devices/Delete/5
+        // POST: delete an existing Device entry on the database and confirms it
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -149,6 +147,7 @@ namespace DeviceManagement_WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Checks if the device exists in the database
         private bool DeviceExists(Guid id)
         {
             return _context.Device.Any(e => e.DeviceId == id);

@@ -20,12 +20,14 @@ namespace DeviceManagement_WebApp.Repository
             return _context.Device.OrderByDescending(device => device.DateCreated).FirstOrDefault();
         }
 
+        //retrieve all Device
         public override IEnumerable<Device> GetAll()
         {
             var connectedOfficeContext = _context.Device.Include(d => d.Category).Include(d => d.Zone);
             return connectedOfficeContext.ToList();
         }
 
+        //retrieve one Device from the database based on the ID parsed through
         public override Device GetById(Guid? id)
         {
             return _context.Device

@@ -25,7 +25,7 @@ namespace DeviceManagement_WebApp.Controllers
             return View(await _context.Category.ToListAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: Get category details
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -43,15 +43,13 @@ namespace DeviceManagement_WebApp.Controllers
             return View(category);
         }
 
-        // GET: Categories/Create
+        // GET: create a new Category entry on the database
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: create a new Category entry database
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,CategoryDescription,DateCreated")] Category category)
@@ -62,7 +60,7 @@ namespace DeviceManagement_WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Categories/Edit/5
+        // GET: Update the existing Category
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -78,9 +76,7 @@ namespace DeviceManagement_WebApp.Controllers
             return View(category);
         }
 
-        // POST: Categories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Update the existing Category
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("CategoryId,CategoryName,CategoryDescription,DateCreated")] Category category)
@@ -108,7 +104,7 @@ namespace DeviceManagement_WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Categories/Delete/5
+        // GET: Delete an existing category from the database
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -126,7 +122,7 @@ namespace DeviceManagement_WebApp.Controllers
             return View(category);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Delete an existing Category
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -137,6 +133,7 @@ namespace DeviceManagement_WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Check if the category exists
         private bool CategoryExists(Guid id)
         {
             return _context.Category.Any(e => e.CategoryId == id);

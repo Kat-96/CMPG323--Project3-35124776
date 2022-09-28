@@ -25,7 +25,7 @@ namespace DeviceManagement_WebApp.Controllers
             return View(await _context.Zone.ToListAsync());
         }
 
-        // GET: Zones/Details/5
+        // GET: get zone details
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -43,15 +43,13 @@ namespace DeviceManagement_WebApp.Controllers
             return View(zone);
         }
 
-        // GET: Zones/Create
+        // GET: create a new Zone entry on the database
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Zones/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: create a new Zone entry on the database
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ZoneId,ZoneName,ZoneDescription,DateCreated")] Zone zone)
@@ -63,7 +61,7 @@ namespace DeviceManagement_WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Zones/Edit/5
+        // GET: update an existing Zone entry on the database
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -79,9 +77,7 @@ namespace DeviceManagement_WebApp.Controllers
             return View(zone);
         }
 
-        // POST: Zones/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: update an existing Zone entry on the database
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("ZoneId,ZoneName,ZoneDescription,DateCreated")] Zone zone)
@@ -111,7 +107,7 @@ namespace DeviceManagement_WebApp.Controllers
 
         }
 
-        // GET: Zones/Delete/5
+        // GET: delete an existing Zone entry on the database
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -129,8 +125,8 @@ namespace DeviceManagement_WebApp.Controllers
             return View(zone);
         }
 
-        // POST: Zones/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: delete an existing Zone entry on the database and confirms the delete
+                [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
@@ -140,6 +136,7 @@ namespace DeviceManagement_WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Checks if Zones exists
         private bool ZoneExists(Guid id)
         {
             return _context.Zone.Any(e => e.ZoneId == id);
