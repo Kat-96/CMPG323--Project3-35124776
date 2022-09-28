@@ -15,13 +15,11 @@ namespace DeviceManagement_WebApp.Repository
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
 
-        //update entity
+        bool Exists(Guid? id);
+
         void Update(T entity);
 
-        //save changes after update/delete/add
         Task SaveChanges();
 
-        //check whether the item exist
-        bool Exists(Guid? id);
     }
 }

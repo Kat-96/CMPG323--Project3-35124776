@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq.Expressions;
 using System;
 using DeviceManagement_WebApp.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace DeviceManagement_WebApp.Repository
 {
